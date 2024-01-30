@@ -1,0 +1,47 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Level1
+
+env:
+    Issue_body: ${{ github.event.issue.body }}
+    FLAG: ${{ secrets.FLAG }}
+
+# Controls when the workflow will run
+on:
+#Triggers on every issue open/modification
+  issues:
+    types: [opened]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  #kept for manual tests
+
+
+permissions: {}
+#sets all github token permissions to none
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    #The secret flag you are looking for is called 'FLAG'
+    environment: super_secret_env
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - name: Run a one-line script
+        run: echo "$Issue_body"
+
+      - name: Run another one-line script
+        run: |
+          echo "${{ github.event.issue.body }}"
+      
+      - name: Run yet another one-line script
+        run: |
+          echo {{ github.event.issue.body }}
+          
+#Bonus points - Mention which of these is secure and why ?
+#In the comments
